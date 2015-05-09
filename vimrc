@@ -1,71 +1,54 @@
 set encoding=utf8
+set termencoding=utf8
+set guicursor=a:ver10
+set guioptions-=r
+
+syntax on
+
 set nocompatible
-
-set guioptions=g
-set guioptions-=T
-set guioptions-=m
-
-set statusline=\ %<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P\ 
-
-highlight Cursor guifg=white guibg=black
-highlight iCursor guifg=white guibg=steelblue
-set guicursor=a:ver10-Cursor-blinkwait300-blinkon500-blinkoff500
-
-syntax enable
-
 set nobackup
 set noswapfile
+set noerrorbells visualbell t_vb=
 
 set number
+set cursorline
+set wildmenu
+set lazyredraw
+
+set hlsearch
 set incsearch
 set ignorecase
+nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
-set novisualbell
-set t_vb=
-set vb
-
-set mouse=a
-set mousemodel=popup
-set mousehide
-
-set ch=1
-
-set shiftwidth=2
-set softtabstop=2
-set tabstop=2
-set expandtab
+set shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 
 set wrap!
-
-"whitespaces
-"set nowrap list listchars=tab:».,trail:·,eol:¶
 let &listchars = 'tab:»' . nr2char(0xA0) . ',trail:·,eol:¶' ",extends:>,precedes:<'
+
+augroup filetypedetect
+au! BufRead,BufNewFile *.as setfiletype java
+au! BufRead,BufNewFile *.hx setfiletype haxe
+au! BufRead,BufNewFile *.tpl setfiletype htmldjango
+au! bufread,bufnewfile *.j setfiletype jinja
+au! bufread,bufnewfile *.go setfiletype go
+augroup END
 
 set ai
 
-au BufRead,BufNewFile *.tpl setfiletype htmldjango
-au BufNewFile,BufRead *.j set filetype=htmljinja
-au BufNewFile,BufRead *.mxml set filetype=mxml
-au BufNewFile,BufRead *.as set filetype=actionscript
-au BufNewFile,BufRead *.less set filetype=less
-au BufNewFile,BufRead *.go set filetype=go
+set statusline=\ %F "tail of the filename
+set statusline+=%= "left/right separator
+set statusline+=%c\  "cursor column
+set statusline+=%l/%L "cursor line/total lines
+set statusline+=\ %P\  "percent through file
+
+vmap < <gv
+vmap > >gv
 
 nmap <silent> <F7> :NERDTreeToggle<CR>
 let NERDTreeWinSize = 30
 let NERDTreeIgnore=['\.pyc$', '\~$']
+let g:netrw_list_hide = '\.pyc$'
 
-" < & > - делаем отступы для блоков
-vmap < <gv
-vmap > >gv
-
-map <c-f> <esc>:%s/\s\+$//<cr>
-
-autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
-" autocmd FileType htmljinja setlocal shiftwidth=4 tabstop=4 softtabstop=4
-" autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
-" autocmd FileType svg setlocal shiftwidth=2 tabstop=2 softtabstop=2
-" autocmd FileType scala setlocal shiftwidth=2 tabstop=2 softtabstop=2
-
-" Press Space to turn off highlighting and clear any message already displayed.
-nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
-set hlsearch
+autocmd FileType python setlocal shiftwidth=4 softtabstop=4 tabstop=4
+autocmd FileType htmldjango setlocal shiftwidth=4 softtabstop=4 tabstop=4
+nnoremap <C-F> :%s/\s\+$//g<CR>
