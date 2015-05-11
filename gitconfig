@@ -1,0 +1,26 @@
+[log]
+  decorate = short
+
+[user]
+  name = Name
+  email = Email@company.com
+
+[color]
+  ui = true
+  diff = auto
+  status = auto
+  branch = auto
+
+[alias]
+  co = checkout
+  ci = commit
+  st = status
+  br = branch
+  #hist = log --pretty=format:\"%Cblue%h%Creset %ad %an | %s%d \" --graph --date=short
+  hist = log --pretty=format:'%Cblue%h%Creset %cd %Cred%d%Creset - %Cgreen%an%Creset %s' --graph --date=local
+  type = cat-file -t
+  dump = cat-file -p
+[branch]
+  autosetuprebase = always
+[push]
+  default = upstream
