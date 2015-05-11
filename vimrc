@@ -52,3 +52,6 @@ let g:netrw_list_hide = '\.pyc$'
 autocmd FileType python setlocal shiftwidth=4 softtabstop=4 tabstop=4
 autocmd FileType htmldjango setlocal shiftwidth=4 softtabstop=4 tabstop=4
 nnoremap <C-F> :%s/\s\+$//g<CR>
+
+"Disable Ex Mode
+nnoremap Q <nop>
