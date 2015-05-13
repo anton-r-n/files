@@ -20,6 +20,8 @@ set incsearch
 set ignorecase
 nnoremap <silent> <Space> :nohlsearch<Bar>:echo<CR>
 
+set laststatus=2
+
 set shiftwidth=2 softtabstop=2 tabstop=2 expandtab
 
 set wrap!
